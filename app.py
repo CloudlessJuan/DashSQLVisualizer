@@ -4,11 +4,11 @@ import plotly.express as px
 import pandas as pd
 from sql_utilities import sql_queries
 
-#Dash App
+# Dash App
 dash_app = Dash(external_stylesheets=[dbc.themes.SLATE], title="MedRentMonitor")
 app = dash_app.server
 
-#Configuración de estilos
+# Configuración de estilos
 SIDEBAR_STYLE = {
     "position": "fixed",
     "top": 0,
@@ -18,10 +18,11 @@ SIDEBAR_STYLE = {
     "padding": "2rem 1rem",
     "background-color": "#f8f9fa",
     "overflow-y": "scroll",
+    "color": "#343a40"  # Color de texto más oscuro
 }
 
 CONTENT_STYLE = {
-    "margin-left": "10%",
+    "margin-left": "20%",  # Ajustado para alinear el contenido con el panel lateral
     "padding": "2rem 1rem",
     "background-color": "#f8f9fa"
 }
@@ -37,9 +38,7 @@ LANGUAGE_BAR_STYLE = {
     "box-shadow": "0 2px 5px rgba(0, 0, 0, 0.1)"
 }
 
-
-
-#Contenido Eng/Esp
+# Contenido Eng/Esp
 content_text = {
     'es': {
         'title': 'Monitor de precios de arrendamiento del Valle de Aburrá',
@@ -52,11 +51,10 @@ content_text = {
 
         Los servicios utilizados en este proyecto son:
 
-        - **Azure Functions**: Webscraping automatizado. [Enlace](https://github.com/Azure/azure-functions)
+        - **Azure Functions**: Webscraping automatizado. [Enlace](https://github.com/CloudlessJuan/Rent_Scraper_FR)
         - **Azure DataLake Gen2**: Almacenamiento de datos recopilados mediante webscraping.
-        - **Azure Data Factory**: Ingesta de datos crudos a un db SQL. [Enlace](https://github.com/Azure/Azure-Data-Factory)
         - **Azure SQL Database**: Almacenamiento estructurado de los datos.
-        - **Azure App Services**: Dashboard para visualizar los datos almacenados cada semana. [Enlace](https://github.com/Azure/App-Service)
+        - **Azure App Services**: Dashboard para visualizar los datos almacenados cada semana. [Enlace](https://github.com/CloudlessJuan/DashSQLVisualizer)
 
         Cabe destacar que las clasificaciones y etiquetas de localización (barrios, comunas) pueden variar en formato, debido a errores en los
         metadatos proporcionados por los creadores de los anuncios. Para más detalles sobre los datos recopilados, puedes contactar al administrador.
@@ -79,11 +77,10 @@ content_text = {
 
         The services used in this project are:
 
-        - **Azure Functions**: Automated web scraping. [Link](https://github.com/Azure/azure-functions)
+        - **Azure Functions**: Automated web scraping. [Link](https://github.com/CloudlessJuan/Rent_Scraper_FR)
         - **Azure DataLake Gen2**: Storage of data collected via web scraping.
-        - **Azure Data Factory**: Ingestion of raw data into a SQL database. [Link](https://github.com/Azure/Azure-Data-Factory)
         - **Azure SQL Database**: Structured storage of the data.
-        - **Azure App Services**: Dashboard for visualizing the stored data on a weekly basis. [Link](https://github.com/Azure/App-Service)
+        - **Azure App Services**: Dashboard for visualizing the stored data on a weekly basis. [Link](https://github.com/CloudlessJuan/DashSQLVisualizer)
 
         Please note that classifications and location labels (neighborhoods, communes) may vary in format due to errors in the metadata provided
         by the listing creators. For more information about the data, you can contact the administrator.
@@ -97,7 +94,7 @@ content_text = {
     }
 }
 
-#Query con las vistas de la db
+# Query con las vistas de la db
 df_stratpr, df_citypr, df_commpr, df_tlpr = sql_queries()
 
 def create_figures(titles):
@@ -106,7 +103,6 @@ def create_figures(titles):
             title={'font': {'size': 24, 'family': 'Arial', 'color': 'black'}, 'x': 0.5, 'xanchor': 'center'},
             yaxis_tickformat=','
         )
-        # fig.update_traces(hovertemplate='%{y:,.0f}')
         return fig
 
     fig_col = style_figure(px.bar(df_commpr, x="Comuna", y="PrecioPromedio", title=titles['fig_col']), titles['fig_col'])
@@ -122,10 +118,7 @@ def create_figures(titles):
 
     return fig_col, fig_pie, fig_col2, fig_line
 
-
-
 # Layout
-# Layout ajustado
 dash_app.layout = html.Div([
     html.Div([
         html.A(
@@ -141,7 +134,6 @@ dash_app.layout = html.Div([
     html.Div(id='sidebar', style=SIDEBAR_STYLE),
     html.Div(id='content', style=CONTENT_STYLE),
 ])
-
 
 @dash_app.callback(
     [Output('sidebar', 'children'),
@@ -163,7 +155,7 @@ def update_language(lang_es, lang_en):
     sidebar_content = html.Div([
         html.H2(texts['sidebar_title'], className="display-4", style={'font-size': '25px', 'font-weight': 'bold'}),
         html.Hr(),
-        dcc.Markdown(texts['description'], dangerously_allow_html=True)
+        dcc.Markdown(texts['description'], dangerously_allow_html=True, style={'color': '#343a40'})  # Color de texto más oscuro para los enlaces
     ], style=SIDEBAR_STYLE)
 
     content = html.Div([
