@@ -5,7 +5,7 @@ import pandas as pd
 from sql_utilities import sql_queries
 
 #Dash App
-dash_app = Dash(external_stylesheets=[dbc.themes.SLATE])
+dash_app = Dash(external_stylesheets=[dbc.themes.SLATE], title="MedRentMonitor")
 app = dash_app.server
 
 #Configuración de estilos
@@ -125,6 +125,7 @@ def create_figures(titles):
 
 
 # Layout
+# Layout ajustado
 dash_app.layout = html.Div([
     html.Div([
         html.A(
@@ -140,8 +141,6 @@ dash_app.layout = html.Div([
     html.Div(id='sidebar', style=SIDEBAR_STYLE),
     html.Div(id='content', style=CONTENT_STYLE),
 ])
-
-
 
 
 @dash_app.callback(
@@ -170,13 +169,18 @@ def update_language(lang_es, lang_en):
     content = html.Div([
         html.H1(texts['title'], style={'textAlign': 'center', 'fontSize': '48px', 'margin-bottom': '30px'}),
         
-        dbc.Row(dbc.Col(dcc.Graph(figure=fig_col), width=12)),
-        html.Br(),
+        # Nueva disposición: pie y gráfico por estratos arriba
         dbc.Row([
             dbc.Col(dcc.Graph(figure=fig_pie), width=6),
             dbc.Col(dcc.Graph(figure=fig_col2), width=6),
         ]),
         html.Br(),
+        
+        # Gráfico por comunas abajo
+        dbc.Row(dbc.Col(dcc.Graph(figure=fig_col), width=12)),
+        html.Br(),
+        
+        # Gráfico de evolución temporal
         dbc.Row(dbc.Col(dcc.Graph(figure=fig_line), width=12))
     ], style=CONTENT_STYLE)
 
