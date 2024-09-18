@@ -51,10 +51,10 @@ content_text = {
 
         Los servicios utilizados en este proyecto son:
 
-        - **Azure Functions**: Webscraping automatizado. [https://github.com/CloudlessJuan/Rent_Scraper_FR](https://github.com/CloudlessJuan/Rent_Scraper_FR)
+        - **Azure Functions**: Webscraping automatizado. [Azure Functions](https://github.com/CloudlessJuan/Rent_Scraper_FR){:target="_blank"}
         - **Azure DataLake Gen2**: Almacenamiento de datos recopilados mediante webscraping.
         - **Azure SQL Database**: Almacenamiento estructurado de los datos.
-        - **Azure App Services**: Dashboard para visualizar los datos almacenados cada semana. [https://github.com/CloudlessJuan/DashSQLVisualizer](https://github.com/CloudlessJuan/DashSQLVisualizer)
+        - **Azure App Services**: Dashboard para visualizar los datos almacenados cada semana. [Azure App Services](https://github.com/CloudlessJuan/DashSQLVisualizer){:target="_blank"}
 
         Cabe destacar que las clasificaciones y etiquetas de localización (barrios, comunas) pueden variar en formato, debido a errores en los
         metadatos proporcionados por los creadores de los anuncios. Para más detalles sobre los datos recopilados, puedes contactar al administrador.
@@ -77,10 +77,10 @@ content_text = {
 
         The services used in this project are:
 
-        - **Azure Functions**: Automated web scraping. [https://github.com/CloudlessJuan/Rent_Scraper_FR](https://github.com/CloudlessJuan/Rent_Scraper_FR)
+        - **Azure Functions**: Automated web scraping. [Azure Functions](https://github.com/CloudlessJuan/Rent_Scraper_FR){:target="_blank"}
         - **Azure DataLake Gen2**: Storage of data collected via web scraping.
         - **Azure SQL Database**: Structured storage of the data.
-        - **Azure App Services**: Dashboard for visualizing the stored data on a weekly basis. [https://github.com/CloudlessJuan/DashSQLVisualizer](https://github.com/CloudlessJuan/DashSQLVisualizer)
+        - **Azure App Services**: Dashboard for visualizing the stored data on a weekly basis. [Azure App Services](https://github.com/CloudlessJuan/DashSQLVisualizer){:target="_blank"}
 
         Please note that classifications and location labels (neighborhoods, communes) may vary in format due to errors in the metadata provided
         by the listing creators. For more information about the data, you can contact the administrator.
@@ -155,7 +155,14 @@ def update_language(lang_es, lang_en):
     sidebar_content = html.Div([
         html.H2(texts['sidebar_title'], className="display-4", style={'font-size': '25px', 'font-weight': 'bold'}),
         html.Hr(),
-        dcc.Markdown(texts['description'], dangerously_allow_html=True, style={'color': '#343a40'})  # Color de texto más oscuro
+        html.Div([
+            dcc.Markdown(texts['description'].split("**Azure Functions**")[0], dangerously_allow_html=True, style={'color': '#343a40'}),
+            html.A("Azure Functions", href="https://github.com/CloudlessJuan/Rent_Scraper_FR", target="_blank", style={'color': '#007bff', 'text-decoration': 'none'}),
+            dcc.Markdown(texts['description'].split("**Azure DataLake Gen2**")[0].split("**Azure Functions**")[1], dangerously_allow_html=True, style={'color': '#343a40'}),
+            dcc.Markdown(texts['description'].split("**Azure SQL Database**")[0].split("**Azure DataLake Gen2**")[1], dangerously_allow_html=True, style={'color': '#343a40'}),
+            html.A("Azure App Services", href="https://github.com/CloudlessJuan/DashSQLVisualizer", target="_blank", style={'color': '#007bff', 'text-decoration': 'none'}),
+            dcc.Markdown(texts['description'].split("Cabe destacar")[0].split("**Azure App Services**")[1], dangerously_allow_html=True, style={'color': '#343a40'})
+        ]),
     ], style=SIDEBAR_STYLE)
 
     content = html.Div([
