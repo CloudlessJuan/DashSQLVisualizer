@@ -22,7 +22,7 @@ SIDEBAR_STYLE = {
 }
 
 CONTENT_STYLE = {
-    "margin-left": "20%",  # Ajustado para alinear el contenido con el panel lateral
+    "margin-left": "10%",  # Ajustado para alinear el contenido con el panel lateral
     "padding": "2rem 1rem",
     "background-color": "#f8f9fa"
 }
@@ -123,11 +123,11 @@ dash_app.layout = html.Div([
     html.Div([
         html.A(
             [html.Span('🇨🇴', style={'font-size': '24px'}), ' Español'],
-            href='#', id='lang-es', style={'margin-right': '10px', 'text-decoration': 'none', 'color': 'black'}
+            href='#', id='lang-es', style={'margin-right': '10px', 'text-decoration': 'none', 'color': '#007bff'}  # Color del enlace
         ),
         html.A(
             [html.Span('🇬🇧', style={'font-size': '24px'}), ' English'],
-            href='#', id='lang-en', style={'text-decoration': 'none', 'color': 'black'}
+            href='#', id='lang-en', style={'text-decoration': 'none', 'color': '#007bff'}  # Color del enlace
         )
     ], style=LANGUAGE_BAR_STYLE),
     
@@ -155,7 +155,7 @@ def update_language(lang_es, lang_en):
     sidebar_content = html.Div([
         html.H2(texts['sidebar_title'], className="display-4", style={'font-size': '25px', 'font-weight': 'bold'}),
         html.Hr(),
-        dcc.Markdown(texts['description'], dangerously_allow_html=True, style={'color': '#343a40'})  # Color de texto más oscuro para los enlaces
+        dcc.Markdown(texts['description'], dangerously_allow_html=True, style={'color': '#343a40'})  # Color de texto más oscuro
     ], style=SIDEBAR_STYLE)
 
     content = html.Div([
@@ -172,9 +172,9 @@ def update_language(lang_es, lang_en):
         dbc.Row(dbc.Col(dcc.Graph(figure=fig_col), width=12)),
         html.Br(),
         
-        # Gráfico de evolución temporal
+        # Evolución temporal
         dbc.Row(dbc.Col(dcc.Graph(figure=fig_line), width=12))
-    ], style=CONTENT_STYLE)
+    ])
 
     return sidebar_content, content
 
