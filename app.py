@@ -14,7 +14,7 @@ SIDEBAR_STYLE = {
     "top": 0,
     "left": 0,
     "bottom": 0,
-    "width": "20%",
+    "width": "15%",
     "padding": "2rem 1rem",
     "background-color": "#f8f9fa",
     "overflow-y": "scroll",
@@ -22,7 +22,7 @@ SIDEBAR_STYLE = {
 }
 
 CONTENT_STYLE = {
-    "margin-left": "10%",  # Ajustado para alinear el contenido con el panel lateral
+    "margin-left": "15%",  # Ajustado para alinear el contenido con el panel lateral
     "padding": "2rem 1rem",
     "background-color": "#f8f9fa"
 }
@@ -123,11 +123,11 @@ dash_app.layout = html.Div([
     html.Div([
         html.A(
             [html.Span('🇨🇴', style={'font-size': '24px'}), ' Español'],
-            href='#', id='lang-es', style={'margin-right': '10px', 'text-decoration': 'none', 'color': '#007bff'}  # Color del enlace
+            href='#', id='lang-es', style={'margin-right': '10px', 'text-decoration': 'none', 'color': '#343a40'}  # Color de enlace gris oscuro
         ),
         html.A(
             [html.Span('🇬🇧', style={'font-size': '24px'}), ' English'],
-            href='#', id='lang-en', style={'text-decoration': 'none', 'color': '#007bff'}  # Color del enlace
+            href='#', id='lang-en', style={'text-decoration': 'none', 'color': '#343a40'}  # Color de enlace gris oscuro
         )
     ], style=LANGUAGE_BAR_STYLE),
     
