@@ -5,7 +5,11 @@ import pandas as pd
 from sql_utilities import sql_queries
 
 # Dash App
-dash_app = Dash(external_stylesheets=[dbc.themes.SLATE], title="MedRentMonitor")
+dash_app = Dash(
+    external_stylesheets=[dbc.themes.SLATE],
+    title="MedRentMonitor",
+    suppress_callback_exceptions=True
+)
 app = dash_app.server
 
 # Configuración de estilos
@@ -14,7 +18,7 @@ SIDEBAR_STYLE = {
     "top": 0,
     "left": 0,
     "bottom": 0,
-    "width": "15%",
+    "width": "20%",
     "padding": "2rem 1rem",
     "background-color": "#f8f9fa",
     "overflow-y": "scroll",
@@ -22,7 +26,7 @@ SIDEBAR_STYLE = {
 }
 
 CONTENT_STYLE = {
-    "margin-left": "15%",  # Ajustado para alinear el contenido con el panel lateral
+    "margin-left": "20%",  # Ajustado para alinear el contenido con el panel lateral
     "padding": "2rem 1rem",
     "background-color": "#f8f9fa"
 }
@@ -133,6 +137,17 @@ dash_app.layout = html.Div([
     
     html.Div(id='sidebar', style=SIDEBAR_STYLE),
     html.Div(id='content', style=CONTENT_STYLE),
+
+    # Añadir estilo CSS
+    html.Style("""
+        a {
+            color: #343a40;  /* Gris oscuro por defecto */
+            text-decoration: none;  /* Eliminar subrayado por defecto */
+        }
+        a:hover {
+            color: #007bff;  /* Azul al pasar el cursor */
+        }
+    """, id="custom-css")  # Puedes darle un ID para referencia
 ])
 
 @dash_app.callback(
