@@ -39,6 +39,8 @@ def sql_queries():
         return None, None, None, None
     finally:
         connection.close()
+
+    df_tlpr = df_tlpr.sort_values("Fecha")
     return df_stratpr, df_citypr, df_commpr, df_tlpr
 
 def get_conn(): #MS Learn function
