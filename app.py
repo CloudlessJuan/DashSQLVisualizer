@@ -80,7 +80,7 @@ content_text = {
         - **Azure Functions**: Automated web scraping. [Azure Functions](https://github.com/CloudlessJuan/Rent_Scraper_FR)
         - **Azure DataLake Gen2**: Storage of data collected via web scraping.
         - **Azure SQL Database**: Structured storage of the data.
-        - **Azure App Services**: Dashboard for visualizing the stored data on a weekly basis. [Azure App Services](https://github.com/CloudlessJuan/DashSQLVisualizer)
+        - **Azure App Services**: Dashboard for visualizing the stored data on a weekly basis. [Azure App Services](https://github.com/CloudlessJuan/DashSQLVisualizer){:target="_blank"}
 
         Please note that classifications and location labels (neighborhoods, communes) may vary in format due to errors in the metadata provided
         by the listing creators. For more information about the data, you can contact the administrator.
@@ -156,11 +156,7 @@ def update_language(lang_es, lang_en):
         html.H2(texts['sidebar_title'], className="display-4", style={'font-size': '25px', 'font-weight': 'bold'}),
         html.Hr(),
         html.Div([
-            dcc.Markdown(texts['description'].split("**Azure Functions**")[0], dangerously_allow_html=True, style={'color': '#343a40'}),
-            dcc.Markdown(texts['description'].split("**Azure DataLake Gen2**")[0].split("**Azure Functions**")[1], dangerously_allow_html=True, style={'color': '#343a40'}),
-            dcc.Markdown(texts['description'].split("**Azure SQL Database**")[0].split("**Azure DataLake Gen2**")[1], dangerously_allow_html=True, style={'color': '#343a40'}),
-            dcc.Markdown(texts['description'].split("Cabe destacar")[0].split("**Azure App Services**")[1], dangerously_allow_html=True, style={'color': '#343a40'})
-        ]),
+            dcc.Markdown(texts['description'], dangerously_allow_html=True, style={'color': '#343a40'})]),
     ], style=SIDEBAR_STYLE)
 
     content = html.Div([
