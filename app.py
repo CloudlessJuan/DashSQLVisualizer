@@ -157,10 +157,8 @@ def update_language(lang_es, lang_en):
         html.Hr(),
         html.Div([
             dcc.Markdown(texts['description'].split("**Azure Functions**")[0], dangerously_allow_html=True, style={'color': '#343a40'}),
-            html.A("Azure Functions", href="https://github.com/CloudlessJuan/Rent_Scraper_FR", target="_blank", style={'color': '#007bff', 'text-decoration': 'none'}),
             dcc.Markdown(texts['description'].split("**Azure DataLake Gen2**")[0].split("**Azure Functions**")[1], dangerously_allow_html=True, style={'color': '#343a40'}),
             dcc.Markdown(texts['description'].split("**Azure SQL Database**")[0].split("**Azure DataLake Gen2**")[1], dangerously_allow_html=True, style={'color': '#343a40'}),
-            html.A("Azure App Services", href="https://github.com/CloudlessJuan/DashSQLVisualizer", target="_blank", style={'color': '#007bff', 'text-decoration': 'none'}),
             dcc.Markdown(texts['description'].split("Cabe destacar")[0].split("**Azure App Services**")[1], dangerously_allow_html=True, style={'color': '#343a40'})
         ]),
     ], style=SIDEBAR_STYLE)
