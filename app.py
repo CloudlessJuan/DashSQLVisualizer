@@ -143,9 +143,9 @@ dash_app.layout = html.Div([
      Input('lang-en', 'n_clicks'),
      Input('interval-update', 'n_intervals')]
 )
-def update_language(lang_es, lang_en):
+def update_language(lang_es, lang_en, n_intervals):
     ctx = callback_context
-    if not ctx.triggered:
+    if not ctx.triggered or ctx.triggered[0]['prop_id'] in ['lang-es.n_clicks', 'interval-update.n_intervals']:
         button_id = 'lang-es'
     else:
         button_id = ctx.triggered[0]['prop_id'].split('.')[0]
