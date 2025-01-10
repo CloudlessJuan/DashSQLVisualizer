@@ -120,6 +120,7 @@ def create_figures(titles):
 
 # Layout
 dash_app.layout = html.Div([
+    dcc.Interval(id='interval-update', interval=12 * 60 * 60 * 1000, n_intervals=0),
     html.Div([
         html.A(
             [html.Span('🇨🇴', style={'font-size': '24px'}), ' Español'],
@@ -139,7 +140,8 @@ dash_app.layout = html.Div([
     [Output('sidebar', 'children'),
      Output('content', 'children')],
     [Input('lang-es', 'n_clicks'),
-     Input('lang-en', 'n_clicks')]
+     Input('lang-en', 'n_clicks'),
+     Input('interval-update', 'n_intervals')]
 )
 def update_language(lang_es, lang_en):
     ctx = callback_context
