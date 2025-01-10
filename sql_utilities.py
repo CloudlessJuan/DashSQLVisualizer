@@ -46,7 +46,6 @@ def sql_queries():
 def get_conn(): #MS Learn function
     try:
         connection_string = os.environ["SQLAZURECONNSTR_ConMonitor"]
-        print("Con: ",connection_string)
         credential = DefaultAzureCredential(exclude_interactive_browser_credential=False)
         token_bytes = credential.get_token("https://database.windows.net/.default").token.encode("UTF-16-LE")
         token_struct = struct.pack(f'<I{len(token_bytes)}s', len(token_bytes), token_bytes)
